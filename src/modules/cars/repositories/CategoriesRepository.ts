@@ -1,20 +1,14 @@
 import { Category } from '../model/Category';
+import { ICategoriesRepository } from './ICategoriesRepository';
 
-// DTO - Data Transfer Object
-// objeto que faz a transferência entre uma camada e outra
-interface ICreateCategoryDTO {
-  name: string;
-  description: string;
-}
-
-class CategoriesRepository {
+export class CategoriesRepository implements ICategoriesRepository {
   private categories: Category[] = [];
 
   constructor() {
     this.categories = [];
   }
 
-  create({ name, description }: ICreateCategoryDTO): void {
+  create({ name, description }): void {
     const category = new Category();
 
     Object.assign(category, {
@@ -36,5 +30,3 @@ class CategoriesRepository {
     return category;
   }
 }
-
-export { CategoriesRepository };
